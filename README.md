@@ -21,13 +21,19 @@ $ pipenv install
 Com isso, será possível executar o servidor:
 
 ```
-$ python http3_server.py --certificate certificates/ssl_cert.pem --private-key certificates/ssl_key.pem
+$ python http3_server.py \
+  --certificate certificates/ssl_cert.pem \
+  --private-key certificates/ssl_key.pem
 ```
 
 Após iniciar o servidor, é possível executar uma ou mais instâncias do cliente:
 
 ```
-$ python http3_client.py --ca-certs certificates/pycacert.pem wss://localhost:4433/ws --print-response --username <username>
+$ python http3_client.py \
+  --print-response \
+  --ca-certs certificates/pycacert.pem \
+  --username test \
+  wss://localhost:4433/ws
 ```
 
 - O parâmetro `--username` é opcional, caso não seja informado, o cliente será identificado como `anonymous-{random_id}`.

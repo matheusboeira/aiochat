@@ -423,7 +423,7 @@ if __name__ == "__main__":
         "--username",
         type=str,
         required=False,
-        help="require a username for the QUIC connection",
+        help="a username for the QUIC connection",
     )
     args = parser.parse_args()
     
