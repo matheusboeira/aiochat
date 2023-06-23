@@ -1,15 +1,11 @@
-# CLIENT
-# executable main with parameters:
-# --print-response --ca-certs certificates/pycacert.pem wss://localhost:4433/ws
-#
-
 from termcolor import colored
+
+import uuid
 import argparse
 import asyncio
 import json
 import logging
 import pickle
-import ssl
 import sys
 import time
 from collections import deque
@@ -322,7 +318,7 @@ async def run(
         if parsed.scheme == "wss":
             ws = await client.websocket(url, subprotocols=["chat", "superchat"])
 
-            print(colored("Conectado ao servidor.", "green"), end="\n")
+            print(colored("Conectado ao servidor.\n", "green"), end="\n")
 
             """
             Asynchronic multi-threading is needed so that the 
@@ -361,12 +357,21 @@ async def run(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="HTTP/3 client")
-    parser.add_argument("url", type=str, help="the URL to query (must be HTTPS)")
     parser.add_argument(
-        "--ca-certs", type=str, help="load CA certificates from the specified file"
+        "url", 
+        type=str, 
+        help="the URL to query (must be HTTPS)"
     )
     parser.add_argument(
-        "-d", "--data", type=str, help="send the specified data in a POST request"
+        "--ca-certs", 
+        type=str, 
+        help="load CA certificates from the specified file"
+    )
+    parser.add_argument(
+        "-d", 
+        "--data", 
+        type=str, 
+        help="send the specified data in a POST request"
     )
     parser.add_argument(
         "-k",
@@ -374,9 +379,16 @@ if __name__ == "__main__":
         action="store_true",
         help="do not validate server certificate",
     )
-    parser.add_argument("--legacy-http", action="store_true", help="use HTTP/0.9")
     parser.add_argument(
-        "-q", "--quic-log", type=str, help="log QUIC events to a file in QLOG format"
+        "--legacy-http", 
+        action="store_true", 
+        help="use HTTP/0.9"
+    )
+    parser.add_argument(
+        "-q", 
+        "--quic-log", 
+        type=str, 
+        help="log QUIC events to a file in QLOG format"
     )
     parser.add_argument(
         "-l",
@@ -385,10 +397,15 @@ if __name__ == "__main__":
         help="log secrets to a file, for use with Wireshark",
     )
     parser.add_argument(
-        "--parallel", type=int, default=1, help="perform this many requests in parallel"
+        "--parallel", 
+        type=int, 
+        default=1, 
+        help="perform this many requests in parallel"
     )
     parser.add_argument(
-        "--print-response", action="store_true", help="print response headers and body"
+        "--print-response", 
+        action="store_true", 
+        help="print response headers and body"
     )
     parser.add_argument(
         "-s",
@@ -397,15 +414,21 @@ if __name__ == "__main__":
         help="read and write session ticket from the specified file",
     )
     parser.add_argument(
-        "-v", "--verbose", action="store_true", help="increase logging verbosity"
+        "-v", 
+        "--verbose", 
+        action="store_true", 
+        help="increase logging verbosity"
     )
     parser.add_argument(
         "--username",
         type=str,
-        required=True,
+        required=False,
         help="require a username for the QUIC connection",
     )
     args = parser.parse_args()
+    
+    if not args.username:
+        args.username = "anonymous-" + str(uuid.uuid4())[:5]
 
     logging.basicConfig(
         format="%(asctime)s %(levelname)s %(name)s %(message)s",

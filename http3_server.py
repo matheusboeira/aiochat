@@ -1,8 +1,3 @@
-# SERVER
-# executable main (initiates the server_app) with parameters:
-# --certificate certificates/ssl_cert.pem --private-key certificates/ssl_key.pem
-#
-
 import argparse
 import asyncio
 import importlib
@@ -380,6 +375,7 @@ class QuicLoggerCustom(QuicLogger):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="QUIC server")
+    
     parser.add_argument(
         "app",
         type=str,
@@ -420,7 +416,10 @@ if __name__ == "__main__":
         help="log secrets to a file, for use with Wireshark",
     )
     parser.add_argument(
-        "-q", "--quic-log", type=str, help="log QUIC events to a file in QLOG format"
+        "-q", 
+        "--quic-log", 
+        type=str, 
+        help="log QUIC events to a file in QLOG format"
     )
     parser.add_argument(
         "-r",
@@ -429,7 +428,10 @@ if __name__ == "__main__":
         help="send a stateless retry for new connections",
     )
     parser.add_argument(
-        "-v", "--verbose", action="store_true", help="increase logging verbosity"
+        "-v", 
+        "--verbose", 
+        action="store_true", 
+        help="increase logging verbosity"
     )
     args = parser.parse_args()
 
