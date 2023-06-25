@@ -382,7 +382,7 @@ if __name__ == "__main__":
         "app",
         type=str,
         nargs="?",
-        default="server_app:app",
+        default="connect:app",
         help="the ASGI application as <module>:<attribute>",
     )
     parser.add_argument(

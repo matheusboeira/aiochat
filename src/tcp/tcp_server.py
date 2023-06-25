@@ -1,5 +1,7 @@
+import datetime
 import socket
 import threading
+import time 
 
 from termcolor import colored
 
@@ -39,6 +41,9 @@ class ChatServer:
             try:
                 message = client_socket.recv(1024).decode('utf-8')
                 if message:
+                    time = str(datetime.datetime.now().strftime('%H:%M:%S'))
+                    formatted_message = colored("{} <> {}: {}".format(time, username, message), "yellow")
+                    print(formatted_message)  
                     self.broadcast(message, client_socket)
                 else:
                     self.remove_client(client_socket)
