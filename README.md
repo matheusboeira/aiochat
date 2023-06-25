@@ -22,7 +22,7 @@ Espera-se que todos os comandos sejam executados na raíz do projeto, isto é, n
 
 ```
 $ ls
-LICENSE.md  Pipfile  Pipfile.lock  README.md  certificates src  tests
+LICENSE.md  Pipfile  Pipfile.lock  README.md  certificates  src  tests
 ```
 
 ## Como usar
@@ -72,7 +72,7 @@ python3 src/tcp/tcp_client.py
 
 ## Testes
 
-Para executar os testes, é necessário estar o servidor a ser testado em execução. Para isso, basta seguir os passos anteriores.
+Para executar os testes, é necessário estar com o servidor a ser testado em execução. Para isso, basta seguir os passos anteriores.
 
 ```bash
 # Executar os testes do QUIC.
