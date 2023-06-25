@@ -7,20 +7,20 @@ def generate_random_message():
         phrases = file.readlines()
     return random.choice(phrases).strip()
 
-# Number of terminals to open
+# Número de terminais
 num_terminals = 1
 
-# Command to be executed in each terminal
-command = "python3 ./src/quic/http3_client.py --print-response --ca-certs certificates/pycacert.pem wss://localhost:4433/ws"
+# Comando a ser executado
+command = "python3 ./src/tcp/tcp_client.py"
 
-# Set the shell to zsh
+# O `shell` do sistema
 shell = "/bin/zsh"
 
-# Loop to open the terminals and send random messages
+# Loop para o terminal e enviar as mensagens
 for _ in range(num_terminals):
     terminal = subprocess.Popen([shell, "-c", command], stdin=subprocess.PIPE)
     while True:
         message = generate_random_message()
-        terminal.stdin.write(f"{message}\n".encode())  # Send the message to the terminal
+        terminal.stdin.write(f"{message}\n".encode()) 
         terminal.stdin.flush()
-        time.sleep(0.001)
+        time.sleep(0.5)
