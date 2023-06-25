@@ -12,10 +12,10 @@ Implementação de um chat simples utilizando o protocolo QUIC. Este projeto foi
 
 Espera-se que todos os comandos sejam executados na raíz do projeto, isto é, no mesmo diretório deste arquivo:
 
-- aio-chat
-  - certificates
-  - src
-  - tests
+- aio-chat/
+  - certificates/
+  - src/
+  - tests/
   - Pipfile
   - Pipfile.lock
   - `README.md`
