@@ -72,7 +72,7 @@ python3 src/tcp/tcp_client.py
 
 ## Testes
 
-Para executar os testes, é necessário estar com o ser servidor QUIC em execução. Após isso, basta executar um arquivo de teste:
+Para executar os testes, é necessário estar o servidor a ser testado em execução. Para isso, basta seguir os passos anteriores.
 
 ```bash
 # Executar os testes do QUIC.
