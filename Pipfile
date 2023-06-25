@@ -14,6 +14,7 @@ starlette = "*"
 werkzeug = "<2.1"
 wsproto = "*"
 termcolor = "*"
+uvloop = "*"
 
 [dev-packages]
 
