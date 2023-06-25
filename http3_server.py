@@ -1,3 +1,5 @@
+from termcolor import colored
+
 import argparse
 import asyncio
 import importlib
@@ -485,6 +487,8 @@ if __name__ == "__main__":
         )
     )
     try:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(colored("Servidor iniciado em %s:%s" % (args.host, args.port), 'green'))
         loop.run_forever()
     except KeyboardInterrupt:
         pass

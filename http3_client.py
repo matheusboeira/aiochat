@@ -285,7 +285,6 @@ def save_session_ticket(ticket):
         with open(args.session_ticket, "wb") as fp:
             pickle.dump(ticket, fp)
 
-# TODO: Remove redundant code und run-function. Url is always parsed with "wss".
 async def run(
     configuration: QuicConfiguration,
     url: str,
@@ -429,6 +428,8 @@ if __name__ == "__main__":
     
     if not args.username:
         args.username = "anonymous-" + str(uuid.uuid4())[:5]
+    else:
+        args.username += "-" + str(uuid.uuid4())[:5]
 
     logging.basicConfig(
         format="%(asctime)s %(levelname)s %(name)s %(message)s",

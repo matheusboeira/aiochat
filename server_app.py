@@ -52,7 +52,7 @@ async def ws(websocket):
                 # forward the message to all the other connected clients
                 if connection != websocket:
                     time = f"{str(datetime.datetime.now().strftime('%H:%M:%S'))}"
-                    formatted_message = colored(f"> {time} <> ", "grey") + message
+                    formatted_message = colored(f"{time} <> ", "light_grey") + message
                     await connection.send_text(formatted_message)
     
     except WebSocketDisconnect:
