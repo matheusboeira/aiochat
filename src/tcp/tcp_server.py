@@ -30,7 +30,8 @@ class ChatServer:
       username = self.clients[sender_socket]
       for client_socket, client_username in self.clients.items():
           if client_socket != sender_socket:
-              formatted_message = colored("{}: {}".format(username, message), "yellow")
+              time = str(datetime.datetime.now().strftime('%H:%M:%S'))
+              formatted_message = colored("{} <> {}: {}".format(time, username, message), "yellow")
               client_socket.send(formatted_message.encode('utf-8'))
 
     def handle_client(self, client_socket):

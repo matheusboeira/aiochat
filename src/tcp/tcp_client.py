@@ -2,6 +2,7 @@ import socket
 import threading
 import argparse
 import uuid
+from termcolor import colored
 
 class ChatClient:
     def __init__(self, host, port, username):
@@ -29,7 +30,7 @@ class ChatClient:
               message = self.client_socket.recv(1024).decode('utf-8')
               print(message)
           except:
-              print("Error receiving messages from the server.")
+              print(colored("Error receiving messages from the server.", "red"))
               self.client_socket.close()
               break
 
@@ -54,7 +55,7 @@ if __name__ == "__main__":
     if not args.username:
         args.username = "anonymous-" + str(uuid.uuid4())[:5]
     else:
-        args.username = args.username + "-" + str(uuid.uuid4())[:5]
+        args.username += "-" + str(uuid.uuid4())[:5]
         
     client = ChatClient('localhost', 5555, args.username)
     client.start()
